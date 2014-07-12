@@ -5,9 +5,15 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-gem 'rspec'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+end
+
 gem 'devise'
-gem 'responders'
+gem 'responders'	
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
 gem 'ancestry'
 # Use SCSS for stylesheets
