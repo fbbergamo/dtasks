@@ -8,5 +8,4 @@ class List < ActiveRecord::Base
 
 	 scope :public_lists, -> { where(public?: true) }
 
-
 end

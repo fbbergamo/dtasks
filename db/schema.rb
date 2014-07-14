@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712055054) do
+ActiveRecord::Schema.define(version: 20140714023525) do
 
   create_table "favorites", force: true do |t|
     t.integer  "list_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140712055054) do
 
   create_table "lists", force: true do |t|
     t.string   "name"
-    t.boolean  "public?"
+    t.string   "status"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20140712055054) do
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
   end
+
+  add_index "tasks", ["ancestry"], name: "index_tasks_on_ancestry"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
