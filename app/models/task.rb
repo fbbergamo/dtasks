@@ -10,11 +10,19 @@ class Task < ActiveRecord::Base
 	end
 
 	def nodes_to_remove
-		nodes = []
+		nodes = [self]
 		node = self
 		while node.is_only_child? do
 			node = node.parent
 			node ? (nodes << node) : break
+		end
+		nodes
+	end
+
+	def destroy_recusive
+		nodes = self.nodes_to_remove
+		nodes.each do |node|
+			node.destroy
 		end
 		nodes
 	end

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140714023525) do
 
   create_table "lists", force: true do |t|
     t.string   "name"
-    t.string   "status"
+    t.boolean  "public?",    default: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
