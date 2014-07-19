@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 	belongs_to :list
-	validates_presence_of :list, :text
+	validates_presence_of :list
 	has_ancestry orphan_strategy:  :destroy
 	validate :parent_same_list
 
