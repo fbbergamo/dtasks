@@ -1,1 +1,6 @@
-<%= list.name %>
+<%= link_to list_path(list) do %>
+	<div class="alert alert-warning">
+		<h3><%= list.name %></h3>
+		<small><%= time_ago_in_words list.created_at %> ago</small>
+	</div>
+<% end %>

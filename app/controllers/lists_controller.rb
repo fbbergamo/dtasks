@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 	end
 
 	def show
-		@tasks = @list.tasks.roots.page(params[:page]).order(:created_at)
+		@tasks = @list.tasks.page(params[:page])
 	end
 
 	def create

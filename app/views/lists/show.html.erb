@@ -1,4 +1,2 @@
-<%= @list.name %>
-
-
-<%= @tasks.to_json %>
+<h2><%= @list.name %></h2>
+<%= render(partial: "tasks/task", collection: @tasks) || "You don't have any task" %>
