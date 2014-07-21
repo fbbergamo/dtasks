@@ -1,0 +1,9 @@
+<%= simple_form_for(task, url: tasks_path ) do |f| %>
+	<%= f.error_notification %>
+	<% if parent_id %>
+		<%= f.hidden_field :parent_id, value: parent_id %>
+	<% end %>
+	<%= f.hidden_field :list_id, value: list_id %>
+	<%= f.input :text, value: '' %>
+	<%= f.button :submit %>
+<% end %>

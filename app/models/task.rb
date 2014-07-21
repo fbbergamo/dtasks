@@ -1,9 +1,12 @@
 class Task < ActiveRecord::Base
 	belongs_to :list
-	validates_presence_of :list
+	validates_presence_of :list, :text
 	has_ancestry orphan_strategy:  :destroy
 	validate :parent_same_list
-
+	delegate :user, to: :list
+	scope :by_user,  -> (user, id) {
+		joins(list: :user ).where(lists: {user_id: user.id}).find(id)
+	}
 	def parent_same_list
 		node = self.parent
 		errors.add(:ancestry, "should be in the same list") if node and node.list != self.list

@@ -6,6 +6,7 @@ class List < ActiveRecord::Base
 	 
 	 paginates_per 50
 	 validates_presence_of :name
-	 scope :public_lists, -> { where(public: true) }
+	 scope :public_lists, -> (user) { where(public: true).where.not(user_id: user) }
+	 scope :authorized, -> (user) { where("user_id = ? or public = ?", user, true) }
 	 accepts_nested_attributes_for :tasks
 end

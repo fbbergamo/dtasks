@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
 	def can_favorite?(list)
 		(list.public? and list.user != self)
 	end
+
+
+	def favorite(list)
+	 	Favorite.find_by(list_id: list.id, user_id: self.id)
+	end
 end

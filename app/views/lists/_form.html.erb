@@ -1,0 +1,7 @@
+<%= simple_form_for(@list, url: lists_path,   html: { class: 'form-inline' },) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name, required: false, autofocus: true %>
+  <%= f.input :public, as: :boolean%>
+  <%= link_to_add_fields "Task add", f, :tasks %>
+  <%= f.button :submit %>
+<% end %>

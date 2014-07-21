@@ -3,15 +3,16 @@ class FavoritiesController < ApplicationController
 	before_action :set_favorite, only: [:destroy]
 
 	def create
-		list = List.find favorite_params[:list_id]
-		current_user.add_favorite(list)
+		@list = List.find favorite_params[:list_id]
+		current_user.add_favorite(@list)
 		respond_to do |format|
 		    format.js
 		end
 	end
 
 	def destroy
-		@favorite.destroy
+		@list = @favorite.list
+		@favorite.destroy if @favorite.user == current_user
 		respond_to do |format|
 		    format.js
 		end

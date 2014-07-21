@@ -1,21 +1,5 @@
-<%= simple_form_for(@list, url: lists_path, ) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :name, required: false, autofocus: true %>
-    <%= f.input :public, as: :boolean%>
-  </div>
-
-	<%=  f.simple_fields_for :tasks do |m| %>
-	  	<%= m.input :text, required: false %>
-	<% end %>
-  <%= link_to_add_fields "Task add", f, :tasks %>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-
-<% end %>
-
-<h1>Minhas Listas</h1>
+<%= render "form" %>
+<h1>My Lists</h1>
 <div class="lists">
 	<%= render(partial: "list", collection: @lists) || "You don't have any list" %>
 </div>

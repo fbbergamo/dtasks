@@ -29,3 +29,5 @@ group :development, :test do
   gem 'capybara'
   gem 'spring',        group: :development
 end
+
+gem 'puma'

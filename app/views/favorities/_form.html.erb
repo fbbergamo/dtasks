@@ -1,0 +1,4 @@
+<%= simple_form_for(Favorite.new, url:  favorities_path, remote: true, html: { class: "add-bookmark"} ) do |f| %>
+	<%= f.hidden_field :list_id, value: list.id %>
+	<%= f.button :submit, 'Add Bookmark' %>
+<% end %>

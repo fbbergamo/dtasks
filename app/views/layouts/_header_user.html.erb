@@ -2,4 +2,5 @@
 	<li><%= link_to "My lists", lists_path %></li>
 	<li><%= link_to "Public Lists", public_lists_path %></li>
 	<li><%= link_to "Bookmark Lists", bookmarks_lists_path %></li>
+	<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 </ul>

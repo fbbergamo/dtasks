@@ -1,12 +1,12 @@
 class ListsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_list, only: [:show,  :destroy]
-	responders :flash, :http_cache
+	responders :location, :flash
+  	respond_to :html
 
 	def index
-		@lists = current_user.lists.page(params[:page])
 		@list = List.new
-		@list.tasks.build
+		index_lists
 	end
 
 	def bookmarks
@@ -14,17 +14,23 @@ class ListsController < ApplicationController
 	end
 
 	def public
-		@lists = List.public_lists.page(params[:page])
+		@lists = List.public_lists(current_user).page(params[:page])
 	end
 
 	def show
+		@task = Task.new
+		@task.list_id = @list.id
 		@tasks = @list.tasks.page(params[:page])
 	end
 
 	def create
 		@list = List.create(list_params.merge(user: current_user))
-		puts @list.errors.to_json
-		respond_with @list
+		respond_with @list do |format|
+			unless @list.valid?
+				index_lists
+		    	format.html { render "index" }
+			end
+		end
 	end
 
 	def destroy
@@ -33,8 +39,14 @@ class ListsController < ApplicationController
 	end
 
 	private
+
+	def index_lists
+		@lists = current_user.lists.page(params[:page])
+		@list.tasks.build
+	end
+
     def set_list
-      @list = List.find(params[:id])
+      @list = List.authorized(current_user).find(params[:id])
     end
 
      def list_params 
