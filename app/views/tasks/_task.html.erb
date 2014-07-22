@@ -2,10 +2,10 @@
 	<p><%= task.text %></p>
 	<small><%= time_ago_in_words task.created_at %> ago</small>
 	<% if task.user == current_user %>
-		<a href="#" class="reply">Sub-Tasks</a>
+		<a href="#" class="reply btn btn-success">Sub-Tasks</a>
 		<div class="reply_form reply_task_id_<%=task.id%>">
 			<%= render(partial: "tasks/form", locals: { parent_id: task.id, list_id: task.list_id, task: Task.new })  %>
 		</div>
-		<%= link_to 'Done', task_path(task), :confirm => 'Are you sure?', :method => :delete %>
+		<%= link_to 'Done', task_path(task), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger" %>
 	<% end %>
 </div>

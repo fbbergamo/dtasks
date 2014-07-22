@@ -1,3 +1,5 @@
 <h2><%= @list.name %></h2>
 <%= nested_messages(@tasks.arrange(:order => :created_at)) || "You don't have any task" %>
-<%= render(partial: "tasks/form", locals: { parent_id: nil, list_id: @list.id, task: @task })  %>
+<% if current_user == @list.user %>
+	<%= render(partial: "tasks/form", locals: { parent_id: nil, list_id: @list.id, task: @task })  %>
+<% end %>

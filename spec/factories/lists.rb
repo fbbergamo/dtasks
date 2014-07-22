@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :list do
     name "Test 1"
-    public? "true"
+    public "true"
   end
 end

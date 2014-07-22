@@ -11,5 +11,10 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ListsHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  	it "remove list link" do
+  		user = create(:user)
+  		list = create(:list, user: user)
+  		link = remove_list(list, user)
+  		expect(link).to match(/Remove/)
+  	end
 end

@@ -1,15 +1,20 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the FavoritiesHelper. For example:
-#
-# describe FavoritiesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe FavoritiesHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before(:each) do
+		@user = create(:user)
+		@user2 = create(:user, email: "j@j.com")
+		@list = create(:list, user: @user)
+	end
+	
+	it "can favorite" do
+		text = bookmark(@list, @user2)
+		expect(text).to match(/Add Bookmark/)
+	end
+
+	it "remove button" do
+		favorite = create(:favorite, user: @user, list: @list)
+		text = remove_button(@list, @user)
+		expect(text).to match(/Remove Bookmark/)
+	end
 end

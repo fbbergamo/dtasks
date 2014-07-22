@@ -33,7 +33,9 @@
 		</nav>
 		<p><%= flash[:alert] %></p>
 		<p><%= flash[:notice] %></p>
-		<%= yield %>
+		<div class="container-fluid">
+			<%= yield %>
+		</div>
 	</div>
 </body>
 </html>

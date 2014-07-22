@@ -8,5 +8,5 @@ class List < ActiveRecord::Base
 	 validates_presence_of :name
 	 scope :public_lists, -> (user) { where(public: true).where.not(user_id: user) }
 	 scope :authorized, -> (user) { where("user_id = ? or public = ?", user, true) }
-	 accepts_nested_attributes_for :tasks
+	 accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:text].blank? }
 end
