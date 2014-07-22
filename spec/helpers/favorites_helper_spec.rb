@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe FavoritiesHelper, :type => :helper do
+RSpec.describe FavoritesHelper, :type => :helper do
 	before(:each) do
 		@user = create(:user)
 		@user2 = create(:user, email: "j@j.com")
