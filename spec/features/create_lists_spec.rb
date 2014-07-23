@@ -5,12 +5,7 @@ RSpec.describe "CreateLists", :type => :request do
 
     it "fill list and task", :js => true  do
     	create(:user)
-    	visit '/users/sign_in'
- 		within("#new_user") do
-	      fill_in 'Email', :with => 'test@exmaple.com.br'
-	      fill_in 'Password', :with => '1234'
-	    end
-	    click_button 'Sign in'
+    	sign_in
 	    expect(page).to have_content 'My Lists'
 	    first('.add_fields').click
 	    within("#new_list") do
@@ -27,17 +22,21 @@ RSpec.describe "CreateLists", :type => :request do
     	user = create(:user)
     	user2 = create(:user, email: "f@f.com")
     	list = create(:list, user: user2, name: "lista 1", public: true)
+    	sign_in
+	    visit '/lists/public'
+	    expect(page).to have_content 'lista 1'
+	    expect(page).to have_button 'Add Bookmark'
+	    click_button "Add Bookmark"
+	    expect(page).to have_content 'Remove Bookmark'
+    end
+
+    def sign_in
     	visit '/users/sign_in'
  		within("#new_user") do
 	      fill_in 'Email', :with => 'test@exmaple.com.br'
 	      fill_in 'Password', :with => '1234'
 	    end  
 	    click_button 'Sign in'
-	    visit '/lists/public'
-	    expect(page).to have_content 'lista 1'
-	    expect(page).to have_button 'Add Bookmark'
-	    click_button "Add Bookmark"
-	    expect(page).to have_content 'Remove Bookmark'
     end
 
   end

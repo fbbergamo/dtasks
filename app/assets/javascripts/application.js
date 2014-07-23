@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+// jQuery(document).ready(function() {
+//   setTimeout(function() {
+//     var source = new EventSource('/notification');
+//     source.addEventListener('message', function(e) {
+//       var data = JSON.parse(e.data);
+//   	  console.log(data);
+//     });
+//   }, 1);
+// });

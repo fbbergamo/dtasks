@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	end
   end
   resources :tasks, only: [:create, :destroy]
+  resources :notification, only: [:index]
   resources :favorites, only: [:create, :destroy]
   get 'messaging' => 'messaging#stream', :as => 'messaging'
 end
